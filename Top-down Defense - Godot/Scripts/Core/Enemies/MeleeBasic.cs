@@ -1,7 +1,10 @@
 using Godot;
 using System;
 
-public class MeleeBasic : Enemy
+namespace Enemies
 {
-    
+    public class MeleeBasic : Enemy
+    {
+
+    }
 }

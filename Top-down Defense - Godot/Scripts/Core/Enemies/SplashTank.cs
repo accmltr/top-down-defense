@@ -1,7 +1,10 @@
 using Godot;
 using System;
 
-public class SplashTank : Enemy
+namespace Enemies
 {
-    
+    public class SplashTank : Enemy
+    {
+
+    }
 }

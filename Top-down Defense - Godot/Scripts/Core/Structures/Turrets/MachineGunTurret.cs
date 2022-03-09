@@ -1,7 +1,10 @@
 using Godot;
 using System;
 
-public class MachineGunTurret : Turret
+namespace Turrets
 {
-    
+    public class MachineGunTurret : Turret
+    {
+
+    }
 }

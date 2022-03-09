@@ -1,7 +1,10 @@
 using Godot;
 using System;
 
-public class ArmourEnhancer : Enemy
+namespace Enemies
 {
-    
+    public class ArmourEnhancer : Enemy
+    {
+
+    }
 }

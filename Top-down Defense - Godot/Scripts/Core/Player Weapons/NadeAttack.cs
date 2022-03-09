@@ -1,7 +1,10 @@
 using Godot;
 using System;
 
-public class NadeAttack : PlayerWeapon
+namespace PlayerWeapons
 {
-    
+    public class NadeAttack : PlayerWeapon
+    {
+
+    }
 }

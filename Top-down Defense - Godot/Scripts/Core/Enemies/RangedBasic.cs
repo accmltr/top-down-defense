@@ -1,7 +1,10 @@
 using Godot;
 using System;
 
-public class RangedBasic : Enemy
+namespace Enemies
 {
-    
+    public class RangedBasic : Enemy
+    {
+
+    }
 }
