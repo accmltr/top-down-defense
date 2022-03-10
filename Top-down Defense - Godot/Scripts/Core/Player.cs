@@ -3,19 +3,25 @@ using System;
 
 public class Player : KinematicBody
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+    [Export]
+    private float move_speed = 10f;
+    private Vector2 _destination;
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+    public override void _PhysicsProcess(float delta)
     {
-        
+        Vector3 des = new Vector3(_destination.x, 0, _destination.y);
+        Vector3 aim = (des - Transform.origin).Normalized();
+        MoveAndSlide(aim * move_speed);
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+    public void set_destination(Vector2 destination_)
+    {
+        _destination = destination_;
+        GD.Print(_destination);
+    }
+
+    public void look_at(Vector3 aim)
+    {
+        LookAt(aim, Vector3.Up);
+    }
 }
