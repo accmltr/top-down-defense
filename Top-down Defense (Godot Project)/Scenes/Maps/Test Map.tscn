@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="Test Map" type="Node2D"]
+
+[node name="Terrain" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain"]
+polygon = PoolVector2Array( -3, -8, 1, -491, 1641, -495, 1406, -285, 807, -84, 643, 35, 421, 71, 313, -33, 154, -54, 65, 18, 35, 170, 84, 391, 294, 549, 590, 594, 919, 361, 1158, 346, 1230, 441, 1305, 628, 1716, 816, 1762, 971, -1, 982 )
