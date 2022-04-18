@@ -1,4 +1,4 @@
-extends Node
+extends PlayerStructure
 
 class_name Turret
 

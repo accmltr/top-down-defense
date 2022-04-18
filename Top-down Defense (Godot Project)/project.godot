@@ -9,19 +9,61 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "PlayerStructure",
+"class": "Base",
+"language": "GDScript",
+"path": "res://Scripts/Player Structures/Instance Types/Base.gd"
+}, {
 "base": "Node",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://Scripts/Enemy Related/Enemy.gd"
 }, {
+"base": "Turret",
+"class": "MachineGunTurret",
+"language": "GDScript",
+"path": "res://Scripts/Player Structures/Instance Types/Turrets/MachineGunTurret.gd"
+}, {
+"base": "Enemy",
+"class": "MeleeEnemy",
+"language": "GDScript",
+"path": "res://Scripts/Enemy Related/Enemies/MeleeEnemy.gd"
+}, {
 "base": "Node",
+"class": "PlayerStructure",
+"language": "GDScript",
+"path": "res://Scripts/Player Structures/PlayerStructure.gd"
+}, {
+"base": "Turret",
+"class": "SnipeTurret",
+"language": "GDScript",
+"path": "res://Scripts/Player Structures/Instance Types/Turrets/SnipeTurret.gd"
+}, {
+"base": "Turret",
+"class": "SplashTurret",
+"language": "GDScript",
+"path": "res://Scripts/Player Structures/Instance Types/Turrets/SplashTurret.gd"
+}, {
+"base": "PlayerStructure",
 "class": "Turret",
 "language": "GDScript",
 "path": "res://Scripts/Player Structures/Turret.gd"
+}, {
+"base": "PlayerStructure",
+"class": "Wall",
+"language": "GDScript",
+"path": "res://Scripts/Player Structures/Instance Types/Wall.gd"
 } ]
 _global_script_class_icons={
+"Base": "",
 "Enemy": "",
-"Turret": ""
+"MachineGunTurret": "",
+"MeleeEnemy": "",
+"PlayerStructure": "",
+"SnipeTurret": "",
+"SplashTurret": "",
+"Turret": "",
+"Wall": ""
 }
 
 [application]
