@@ -1,8 +1,38 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Enemies/Melee Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Turrets/MachineGunTurret.tscn" type="PackedScene" id=2]
 
 [node name="Test Map" type="Node2D"]
 
-[node name="Terrain" type="StaticBody2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="."]
+position = Vector2( 1082, 198 )
+current = true
+zoom = Vector2( 2, 2 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain"]
+[node name="MapContent" type="Node" parent="."]
+
+[node name="Terrain" type="StaticBody2D" parent="MapContent"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapContent/Terrain"]
 polygon = PoolVector2Array( -3, -8, 1, -491, 1641, -495, 1406, -285, 807, -84, 643, 35, 421, 71, 313, -33, 154, -54, 65, 18, 35, 170, 84, 391, 294, 549, 590, 594, 919, 361, 1158, 346, 1230, 441, 1305, 628, 1716, 816, 1762, 971, -1, 982 )
+
+[node name="PlayerStructures" type="Node" parent="."]
+
+[node name="MachineGunTurret" parent="PlayerStructures" instance=ExtResource( 2 )]
+position = Vector2( 750, 215 )
+
+[node name="Player" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="MeleeEnemy" parent="Enemies" instance=ExtResource( 1 )]
+position = Vector2( 882, 147 )
+
+[node name="MeleeEnemy2" parent="Enemies" instance=ExtResource( 1 )]
+position = Vector2( 803, 89 )
+
+[node name="MeleeEnemy3" parent="Enemies" instance=ExtResource( 1 )]
+position = Vector2( 727, 389 )
+
+[node name="UI" type="Node" parent="."]

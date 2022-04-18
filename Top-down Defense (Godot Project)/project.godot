@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Scripts/Enemy Related/Enemy.gd"
+}, {
+"base": "Node",
+"class": "Turret",
+"language": "GDScript",
+"path": "res://Scripts/Player Structures/Turret.gd"
+} ]
+_global_script_class_icons={
+"Enemy": "",
+"Turret": ""
+}
+
 [application]
 
 config/name="Top-down Defense (Godot Project)"
