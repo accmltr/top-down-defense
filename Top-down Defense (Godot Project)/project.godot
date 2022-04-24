@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player Structures/Instance Types/Turrets/MachineGunTurret.gd"
 }, {
+"base": "Node",
+"class": "Map",
+"language": "GDScript",
+"path": "res://Scripts/Map.gd"
+}, {
 "base": "Enemy",
 "class": "MeleeEnemy",
 "language": "GDScript",
@@ -58,6 +63,7 @@ _global_script_class_icons={
 "Base": "",
 "Enemy": "",
 "MachineGunTurret": "",
+"Map": "",
 "MeleeEnemy": "",
 "PlayerStructure": "",
 "SnipeTurret": "",
@@ -71,6 +77,10 @@ _global_script_class_icons={
 config/name="Top-down Defense (Godot Project)"
 run/main_scene="res://Scenes/Maps/Test Map.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+MapRefs="*res://Scripts/MapRefs.gd"
 
 [layer_names]
 
