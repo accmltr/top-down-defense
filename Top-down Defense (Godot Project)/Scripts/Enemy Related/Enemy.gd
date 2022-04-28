@@ -1,3 +1,4 @@
-extends Node
+extends Attacker
 
 class_name Enemy
+

@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player Structures/Turrets/MachineGunTurret.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player Structures/Base.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Attacker.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Enemy Related/Enemy.gd" type="Script" id=4]
 
 [node name="Test Map" type="Node2D"]
 script = ExtResource( 1 )
@@ -33,8 +33,29 @@ position = Vector2( 750, 215 )
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Attacker" type="Node2D" parent="Enemies"]
-position = Vector2( 567, 342 )
+position = Vector2( 667, 286 )
 script = ExtResource( 4 )
-_attack_range = 470.0
+_is_enemy = false
+_attack_range = 800.0
+
+[node name="Attacker2" type="Node2D" parent="Enemies"]
+position = Vector2( 921, 226 )
+script = ExtResource( 4 )
+_attack_range = 800.0
+
+[node name="Attacker3" type="Node2D" parent="Enemies"]
+position = Vector2( 401, 207 )
+script = ExtResource( 4 )
+_attack_range = 800.0
+
+[node name="Attacker4" type="Node2D" parent="Enemies"]
+position = Vector2( 600, 502 )
+script = ExtResource( 4 )
+_attack_range = 800.0
+
+[node name="Attacker5" type="Node2D" parent="Enemies"]
+position = Vector2( 689, 115 )
+script = ExtResource( 4 )
+_attack_range = 800.0
 
 [node name="UI" type="Node" parent="."]

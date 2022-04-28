@@ -9,12 +9,17 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Attacker",
+"language": "GDScript",
+"path": "res://Scripts/Attacker.gd"
+}, {
 "base": "PlayerStructure",
 "class": "Base",
 "language": "GDScript",
 "path": "res://Scripts/Player Structures/Instance Types/Base.gd"
 }, {
-"base": "Node",
+"base": "Attacker",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://Scripts/Enemy Related/Enemy.gd"
@@ -34,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemy Related/Enemies/MeleeEnemy.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "PlayerStructure",
 "language": "GDScript",
 "path": "res://Scripts/Player Structures/PlayerStructure.gd"
@@ -60,6 +65,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Player Structures/Instance Types/Wall.gd"
 } ]
 _global_script_class_icons={
+"Attacker": "",
 "Base": "",
 "Enemy": "",
 "MachineGunTurret": "",
