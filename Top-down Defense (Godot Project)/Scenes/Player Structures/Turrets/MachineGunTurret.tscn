@@ -5,3 +5,10 @@
 
 [node name="MachineGunTurret" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+_projectile_point_np = NodePath("ProjectilePoint")
+
+[node name="AttackerPart" parent="." index="0"]
+_is_enemy = false
+_attack_range = 500.0
+
+[node name="ProjectilePoint" type="Node2D" parent="." index="3"]

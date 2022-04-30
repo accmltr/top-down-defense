@@ -12,23 +12,27 @@ var _reload_time: float = (1.0/_attack_speed) - _cast_time
 var _is_reloading: bool = false
 var _is_attacking: bool = false
 
+signal cast_attack(target)
+signal finished_casting(target)
+signal finished_reloading()
+
 func _physics_process(_delta):
 	if _can_attack():
 		_attack()
 
 func _finished_casting():
+	emit_signal("finished_casting", _target)
 	_is_attacking = false
 	_is_reloading = true
 	yield(get_tree().create_timer(_reload_time), "timeout")
 	_finished_reloading()
 
 func _finished_reloading():
+	emit_signal("finished_reloading")
 	_is_reloading = false
 
 func _attack():
-	var t_name = _target.to_string()
-	_target.queue_free()
-	print("Target destroyed: %s" % t_name)
+	emit_signal("cast_attack", _target)
 	_is_attacking = true
 	yield(get_tree().create_timer(_cast_time), "timeout")
 	_finished_casting()

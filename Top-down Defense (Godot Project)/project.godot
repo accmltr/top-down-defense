@@ -44,6 +44,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player Structures/PlayerStructure.gd"
 }, {
+"base": "Node2D",
+"class": "Projectile",
+"language": "GDScript",
+"path": "res://Scripts/Projectile.gd"
+}, {
+"base": "Node",
+"class": "ProjectilesManager",
+"language": "GDScript",
+"path": "res://Scripts/ProjectilesManager.gd"
+}, {
 "base": "Turret",
 "class": "SnipeTurret",
 "language": "GDScript",
@@ -72,6 +82,8 @@ _global_script_class_icons={
 "Map": "",
 "MeleeEnemy": "",
 "PlayerStructure": "",
+"Projectile": "",
+"ProjectilesManager": "",
 "SnipeTurret": "",
 "SplashTurret": "",
 "Turret": "",

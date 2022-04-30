@@ -2,39 +2,31 @@ extends PlayerStructure
 
 class_name Turret
 
-var _fire_rate: float = 1
-var _bogies: Array = []
-var _reloaded: bool = true
+export var damage: float = 10
+export var projectile: PackedScene
+export var _projectile_point_np: NodePath
 
-onready var _attack_range: Area2D = $AttackRange
-onready var _reload_timer: Timer = $ReloadTimer
+onready var projectiles_manager: Node = $Projectiles
+onready var _projectile_point: Node2D = get_node(_projectile_point_np) as Node2D
+onready var attacker_part: Attacker = $AttackerPart
 
 func _ready():
-	_attack_range.connect("body_entered", self, "_on_enemy_enter")
-	_attack_range.connect("body_exited", self, "_on_enemy_exit")
-	_reload_timer.wait_time = 1.0/_fire_rate
-	_reload_timer.connect("timeout", self, "_on_reloaded")
+	# warning-ignore:return_value_discarded
+	attacker_part.connect("cast_attack", self, "start_casting")
+	# warning-ignore:return_value_discarded
+	attacker_part.connect("finished_casting", self, "finish_casting")
+	# warning-ignore:return_value_discarded
+	attacker_part.connect("finished_reloading", self, "finish_reloading")
 
-func _physics_process(delta):
-	if _can_attack():
-		_fire()
+# warning-ignore:unused_argument
+func start_casting(target_: Node2D):
+	pass
 
-func _fire():
-	_closest_bogy().queue_free()
-	_reload_timer.start()
-	_reloaded = false
+func finish_casting(target_: Node2D):
+	var p = projectile.instance() as Projectile
+	projectiles_manager.add_projectile(p)
+	p.global_position = _projectile_point.global_position
+	p.launch(projectiles_manager, damage, target_)
 
-func _can_attack() -> bool:
-	return _reloaded && _bogies.size() > 0
-
-func _on_enemy_enter(body: Node):
-	_bogies.append(body)
-
-func _on_enemy_exit(body: Node):
-	_bogies.remove(_bogies.find(body))
-
-func _on_reloaded():
-	_reloaded = true
-
-func _closest_bogy() -> Enemy:
-	return _bogies[0]
+func finish_reloading():
+	pass

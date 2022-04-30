@@ -1,9 +1,24 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player Structures/Turrets/MachineGunTurret.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player Structures/Base.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Enemy Related/Enemy.gd" type="Script" id=4]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node
+
+var stop = false
+
+func _process(_delta):
+	if MapRefs.map && !stop:
+		for e in get_children():
+			MapRefs.map.add_enemy(e)
+		stop = true
+"
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 15.0
 
 [node name="Test Map" type="Node2D"]
 script = ExtResource( 1 )
@@ -27,35 +42,22 @@ position = Vector2( 248, 215 )
 
 [node name="MachineGunTurret" parent="PlayerStructures" instance=ExtResource( 2 )]
 position = Vector2( 750, 215 )
+collision_layer = 1
+collision_mask = 1
 
 [node name="Player" type="Node" parent="."]
 
 [node name="Enemies" type="Node" parent="."]
+script = SubResource( 2 )
 
-[node name="Attacker" type="Node2D" parent="Enemies"]
-position = Vector2( 667, 286 )
-script = ExtResource( 4 )
-_is_enemy = false
-_attack_range = 800.0
-
-[node name="Attacker2" type="Node2D" parent="Enemies"]
-position = Vector2( 921, 226 )
+[node name="Attacker" type="KinematicBody2D" parent="Enemies"]
+position = Vector2( 914, 72 )
+collision_layer = 8
+collision_mask = 15
 script = ExtResource( 4 )
 _attack_range = 800.0
 
-[node name="Attacker3" type="Node2D" parent="Enemies"]
-position = Vector2( 401, 207 )
-script = ExtResource( 4 )
-_attack_range = 800.0
-
-[node name="Attacker4" type="Node2D" parent="Enemies"]
-position = Vector2( 600, 502 )
-script = ExtResource( 4 )
-_attack_range = 800.0
-
-[node name="Attacker5" type="Node2D" parent="Enemies"]
-position = Vector2( 689, 115 )
-script = ExtResource( 4 )
-_attack_range = 800.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Attacker"]
+shape = SubResource( 1 )
 
 [node name="UI" type="Node" parent="."]

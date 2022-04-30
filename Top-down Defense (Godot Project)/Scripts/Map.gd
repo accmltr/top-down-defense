@@ -5,8 +5,24 @@ class_name Map
 onready var _player_structures_holder: Node = $PlayerStructures
 onready var _enemies_holder: Node = $Enemies
 
+var player_structs: Array = []
+var enemies: Array = []
+
 func _ready():
 	MapRefs.map = self
+
+func add_enemy(e: Enemy):
+	if e.get_parent():
+		e.get_parent().remove_child(e)
+	_enemies_holder.add_child(e)
+	enemies.append(e)
+
+func delete_enemy(e: Enemy):
+	enemies.remove(enemies.find(e))
+	e.queue_free()
+
+func has_enemy(e: Enemy) -> bool:
+	return enemies.has(e)
 
 func closest_player_structure_within_range(enemy: Node2D, radius: float) -> Node2D:
 	return _closest_node_within_range(_player_structures_holder, enemy, radius)
