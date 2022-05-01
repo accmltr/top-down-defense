@@ -20,13 +20,16 @@ func _ready():
 
 # warning-ignore:unused_argument
 func start_casting(target_: Node2D):
-	pass
+	fire(target_)
 
 func finish_casting(target_: Node2D):
+	pass
+
+func finish_reloading():
+	pass
+
+func fire(target_: Node2D):
 	var p = projectile.instance() as Projectile
 	projectiles_manager.add_projectile(p)
 	p.global_position = _projectile_point.global_position
 	p.launch(projectiles_manager, damage, target_)
-
-func finish_reloading():
-	pass

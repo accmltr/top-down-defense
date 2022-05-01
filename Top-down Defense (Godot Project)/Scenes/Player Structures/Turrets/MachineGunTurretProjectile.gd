@@ -13,5 +13,6 @@ func launch(manager, damage_: float, target_: Node2D):
 
 
 func _on_body_entered(body):
-	print("deal %s damage to %s" % [_damage, body])
-	destroy()
+	if body == _target:
+		print("deal %s damage to %s" % [_damage, body])
+		destroy()

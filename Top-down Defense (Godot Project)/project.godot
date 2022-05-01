@@ -94,11 +94,15 @@ _global_script_class_icons={
 
 config/name="Top-down Defense (Godot Project)"
 run/main_scene="res://Scenes/Maps/Test Map.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 
 MapRefs="*res://Scripts/MapRefs.gd"
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
 
 [layer_names]
 
@@ -111,7 +115,3 @@ MapRefs="*res://Scripts/MapRefs.gd"
 [physics]
 
 common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
