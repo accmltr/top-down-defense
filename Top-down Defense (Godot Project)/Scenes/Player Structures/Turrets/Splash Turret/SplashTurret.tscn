@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Player Structures/Turrets/BaseTurret.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Player Structures/Instance Types/Turrets/SplashTurret/SplashTurret.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Attack Execution Scripts/PerimeterSplashAttackExecution.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -14,5 +15,8 @@ _is_enemy = false
 _cast_time = 0.1
 _attack_range = 100.0
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="AttackExecution" parent="." index="1"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 1 )

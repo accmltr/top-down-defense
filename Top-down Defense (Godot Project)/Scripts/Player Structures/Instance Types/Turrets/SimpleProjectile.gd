@@ -14,12 +14,12 @@ func _physics_process(delta):
 	elif _launched:
 		destroy()
 
-func launch(manager, damage_: float, target_: Node2D = null):
-	.launch(manager, damage_, target_)
+func launch(agent_, damage_: float, target_: Node2D = null):
+	.launch(agent_, damage_, target_)
 
 
 func _on_body_entered(body):
 	if body == _target:
-		body.get_health().change_health(_manager.agent, -_damage)
+		body.get_health().change_health(_agent, -_damage)
 		emit_signal("hit", _target)
 		destroy()

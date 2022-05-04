@@ -3,7 +3,6 @@ extends Node
 class_name ProjectilesManager
 
 var projectiles: Array = []
-var agent: Node2D
 
 func add_projectile(p: Projectile):
 	if p.get_parent():

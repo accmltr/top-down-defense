@@ -1,21 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Player Structures/Turret.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Attacker.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AttackExecution.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/ProjectilesManager.gd" type="Script" id=4]
 
 [node name="BaseTurret" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 1 )
-_projectile_point_np = NodePath("ProjectilePoint")
 
 [node name="AttackerPart" type="Node2D" parent="."]
 script = ExtResource( 2 )
+
+[node name="AttackExecution" type="Node2D" parent="."]
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Projectiles" type="Node" parent="."]
 script = ExtResource( 4 )
-
-[node name="ProjectilePoint" type="Node2D" parent="."]

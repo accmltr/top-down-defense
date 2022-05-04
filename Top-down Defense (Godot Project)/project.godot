@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AttackExecution",
+"language": "GDScript",
+"path": "res://Scripts/AttackExecution.gd"
+}, {
 "base": "Node2D",
 "class": "Attacker",
 "language": "GDScript",
@@ -27,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Health",
 "language": "GDScript",
-"path": "res://Health.gd"
+"path": "res://Scripts/Health.gd"
 }, {
 "base": "Turret",
 "class": "MachineGunTurret",
@@ -44,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemy Related/Enemies/MeleeEnemy.gd"
 }, {
+"base": "AttackExecution",
+"class": "PerimeterSplashAttackExecution",
+"language": "GDScript",
+"path": "res://Scripts/Attack Execution Scripts/PerimeterSplashAttackExecution.gd"
+}, {
 "base": "Node2D",
 "class": "PlayerStructure",
 "language": "GDScript",
@@ -53,6 +63,11 @@ _global_script_classes=[ {
 "class": "Projectile",
 "language": "GDScript",
 "path": "res://Scripts/Projectile.gd"
+}, {
+"base": "AttackExecution",
+"class": "ProjectileAttackExecution",
+"language": "GDScript",
+"path": "res://Scripts/Attack Execution Scripts/ProjectileAttackExecution.gd"
 }, {
 "base": "Node",
 "class": "ProjectilesManager",
@@ -85,6 +100,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Player Structures/Instance Types/Wall.gd"
 } ]
 _global_script_class_icons={
+"AttackExecution": "",
 "Attacker": "",
 "Base": "",
 "Enemy": "",
@@ -92,8 +108,10 @@ _global_script_class_icons={
 "MachineGunTurret": "",
 "Map": "",
 "MeleeEnemy": "",
+"PerimeterSplashAttackExecution": "",
 "PlayerStructure": "",
 "Projectile": "",
+"ProjectileAttackExecution": "",
 "ProjectilesManager": "",
 "SimpleProjectile": "",
 "SnipeTurret": "",
