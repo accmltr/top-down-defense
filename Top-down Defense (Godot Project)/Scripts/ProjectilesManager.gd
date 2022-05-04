@@ -3,6 +3,7 @@ extends Node
 class_name ProjectilesManager
 
 var projectiles: Array = []
+var agent: Node2D
 
 func add_projectile(p: Projectile):
 	if p.get_parent():
@@ -11,7 +12,7 @@ func add_projectile(p: Projectile):
 	projectiles.append(p)
 
 func delete_projectile(p: Projectile):
-	projectiles.remove(projectiles.find(p))
+	projectiles.erase(p)
 	p.queue_free()
 
 func has_projecttile(p: Projectile) -> bool:

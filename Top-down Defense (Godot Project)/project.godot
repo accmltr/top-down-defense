@@ -19,10 +19,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player Structures/Instance Types/Base.gd"
 }, {
-"base": "Attacker",
+"base": "Node2D",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://Scripts/Enemy Related/Enemy.gd"
+}, {
+"base": "Node",
+"class": "Health",
+"language": "GDScript",
+"path": "res://Health.gd"
 }, {
 "base": "Turret",
 "class": "MachineGunTurret",
@@ -83,6 +88,7 @@ _global_script_class_icons={
 "Attacker": "",
 "Base": "",
 "Enemy": "",
+"Health": "",
 "MachineGunTurret": "",
 "Map": "",
 "MeleeEnemy": "",

@@ -11,6 +11,7 @@ onready var _projectile_point: Node2D = get_node(_projectile_point_np) as Node2D
 onready var attacker_part: Attacker = $AttackerPart
 
 func _ready():
+	projectiles_manager.agent = self
 	# warning-ignore:return_value_discarded
 	attacker_part.connect("cast_attack", self, "start_casting")
 	# warning-ignore:return_value_discarded

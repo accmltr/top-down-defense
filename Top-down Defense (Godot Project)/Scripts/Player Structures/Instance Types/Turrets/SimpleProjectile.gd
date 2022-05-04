@@ -20,6 +20,6 @@ func launch(manager, damage_: float, target_: Node2D = null):
 
 func _on_body_entered(body):
 	if body == _target:
-		print("deal %s damage to %s" % [_damage, body])
+		body.get_health().change_health(_manager.agent, -_damage)
 		emit_signal("hit", _target)
 		destroy()

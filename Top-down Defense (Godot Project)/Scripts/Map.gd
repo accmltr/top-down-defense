@@ -18,8 +18,18 @@ func add_enemy(e: Enemy):
 	enemies.append(e)
 
 func delete_enemy(e: Enemy):
-	enemies.remove(enemies.find(e))
+	enemies.erase(e)
 	e.queue_free()
+
+func add_player_struct(s: PlayerStructure):
+	player_structs.append(s)
+	if s.get_parent():
+		s.get_parent().remove_child(s)
+	_player_structures_holder.add_child(s)
+
+func delete_player_struct(s: PlayerStructure):
+	player_structs.erase(s)
+	s.queue_free()
 
 func has_enemy(e: Enemy) -> bool:
 	return enemies.has(e)
