@@ -1,25 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Player Structures/Turret.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Attacker.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Player Structures/Turrets/MachineGunTurretProjectile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/ProjectilesManager.gd" type="Script" id=4]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 40.0
 
 [node name="BaseTurret" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 1 )
-projectile = ExtResource( 3 )
 _projectile_point_np = NodePath("ProjectilePoint")
 
 [node name="AttackerPart" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
 
 [node name="Projectiles" type="Node" parent="."]
 script = ExtResource( 4 )

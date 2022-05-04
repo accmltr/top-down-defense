@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/Player Structures/Turrets/MachineGunTurretProjectile.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Player Structures/Instance Types/Turrets/SimpleProjectile.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 4.0

@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Turret",
 "class": "MachineGunTurret",
 "language": "GDScript",
-"path": "res://Scripts/Player Structures/Instance Types/Turrets/MachineGunTurret.gd"
+"path": "res://Scripts/Player Structures/Instance Types/Turrets/Machine Gun Turret/MachineGunTurret.gd"
 }, {
 "base": "Node",
 "class": "Map",
@@ -54,15 +54,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/ProjectilesManager.gd"
 }, {
+"base": "Projectile",
+"class": "SimpleProjectile",
+"language": "GDScript",
+"path": "res://Scripts/Player Structures/Instance Types/Turrets/SimpleProjectile.gd"
+}, {
 "base": "Turret",
 "class": "SnipeTurret",
 "language": "GDScript",
-"path": "res://Scripts/Player Structures/Instance Types/Turrets/SnipeTurret.gd"
+"path": "res://Scripts/Player Structures/Instance Types/Turrets/Snipe Turret/SnipeTurret.gd"
 }, {
 "base": "Turret",
 "class": "SplashTurret",
 "language": "GDScript",
-"path": "res://Scripts/Player Structures/Instance Types/Turrets/SplashTurret.gd"
+"path": "res://Scripts/Player Structures/Instance Types/Turrets/SplashTurret/SplashTurret.gd"
 }, {
 "base": "PlayerStructure",
 "class": "Turret",
@@ -84,6 +89,7 @@ _global_script_class_icons={
 "PlayerStructure": "",
 "Projectile": "",
 "ProjectilesManager": "",
+"SimpleProjectile": "",
 "SnipeTurret": "",
 "SplashTurret": "",
 "Turret": "",

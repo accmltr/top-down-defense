@@ -1,11 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Player Structures/Turrets/MachineGunTurret.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Player Structures/Turrets/Machinge Gun Turret/MachineGunTurret.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player Structures/Base.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Enemies/BaseEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Player Structures/Turrets/Snipe Turret/SnipeTurret.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Player Structures/Turrets/Splash Turret/SplashTurret.tscn" type="PackedScene" id=6]
 
 [sub_resource type="NavigationPolygon" id=3]
+vertices = PoolVector2Array( 355, -304, 469, -315, 616, -233, 583, -17, 282, -98, 85, -235, 155, -379 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ), PoolIntArray( 0, 5, 6 ) ]
+outlines = [ PoolVector2Array( 469, -315, 616, -233, 583, -17, 282, -98, 85, -235, 155, -379, 355, -304 ) ]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 100.0
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends Node
@@ -45,17 +53,25 @@ navpoly = SubResource( 3 )
 position = Vector2( 248, 215 )
 
 [node name="MachineGunTurret" parent="PlayerStructures" instance=ExtResource( 2 )]
-position = Vector2( 750, 215 )
+position = Vector2( 592, 207 )
 collision_layer = 1
 collision_mask = 1
 
-[node name="Player" type="Node" parent="."]
+[node name="SnipeTurret" parent="PlayerStructures" instance=ExtResource( 5 )]
+position = Vector2( 701, 352 )
+
+[node name="SplashTurret" parent="PlayerStructures" instance=ExtResource( 6 )]
+position = Vector2( 825, 94 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerStructures/SplashTurret"]
+shape = SubResource( 4 )
+disabled = true
 
 [node name="Enemies" type="Node" parent="."]
 script = SubResource( 2 )
 
 [node name="BaseEnemy" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 920, 43 )
+position = Vector2( 908, 46 )
 
 [node name="BaseEnemy2" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 973, 190 )
