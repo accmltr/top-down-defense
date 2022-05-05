@@ -18,6 +18,7 @@ _attack_range = 250.0
 
 [node name="AttackExecution" parent="." index="1"]
 script = ExtResource( 3 )
+run_without_animator = true
 _projectile = ExtResource( 4 )
 _fire_point_np = NodePath("FirePoint")
 

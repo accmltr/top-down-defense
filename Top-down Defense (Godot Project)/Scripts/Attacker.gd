@@ -7,15 +7,15 @@ export var _cast_time: float = 0.2
 export var _attack_speed: float = 0.6
 export var _attack_range: float = 200
 
-var _target: Node2D
+var target: Node2D
 onready var _reload_time: float = (1.0/_attack_speed) - _cast_time
 var is_reloading: bool = false
 var is_attacking: bool = false
 var cast_timer: Timer
 var reload_timer: Timer
 
-signal cast_attack(target)
-signal finished_casting(target)
+signal cast_attack(_target_)
+signal finished_casting(_target_)
 signal finished_reloading()
 
 func _ready():
@@ -37,7 +37,7 @@ func _physics_process(_delta):
 		_attack()
 
 func _finished_casting():
-	emit_signal("finished_casting", _target)
+	emit_signal("finished_casting", target)
 	is_attacking = false
 	is_reloading = true
 	reload_timer.start(_reload_time)
@@ -47,15 +47,15 @@ func _finished_reloading():
 	is_reloading = false
 
 func _attack():
-	emit_signal("cast_attack", _target)
+	emit_signal("cast_attack", target)
 	is_attacking = true
 	cast_timer.start(_cast_time)
 
 func _can_attack() -> bool:
 	if is_attacking || is_reloading:
 		return false
-	_target = _get_target()
-	if _target == null:
+	target = _get_target()
+	if target == null:
 		return false
 	return true
 

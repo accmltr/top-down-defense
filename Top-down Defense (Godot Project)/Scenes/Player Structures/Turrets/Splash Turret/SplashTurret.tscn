@@ -17,6 +17,7 @@ _attack_range = 100.0
 
 [node name="AttackExecution" parent="." index="1"]
 script = ExtResource( 3 )
+run_without_animator = true
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 1 )

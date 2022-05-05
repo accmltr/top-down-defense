@@ -19,10 +19,12 @@ _attack_range = 350.0
 
 [node name="AttackExecution" parent="." index="1"]
 script = ExtResource( 3 )
+run_without_animator = true
 _projectile = ExtResource( 4 )
 _fire_point_np = NodePath("FirePoint")
 
 [node name="FirePoint" type="Node2D" parent="AttackExecution" index="0"]
+position = Vector2( 15, 0 )
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 1 )
