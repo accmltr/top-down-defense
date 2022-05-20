@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player Structures/Turrets/Machinge Gun Turret/MachineGunTurret.tscn" type="PackedScene" id=2]
@@ -7,10 +7,34 @@
 [ext_resource path="res://Scenes/Player Structures/Turrets/Snipe Turret/SnipeTurret.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Player Structures/Turrets/Splash Turret/SplashTurret.tscn" type="PackedScene" id=6]
 
-[sub_resource type="NavigationPolygon" id=3]
-vertices = PoolVector2Array( 355, -304, 469, -315, 616, -233, 583, -17, 282, -98, 85, -235, 155, -379 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ), PoolIntArray( 0, 5, 6 ) ]
-outlines = [ PoolVector2Array( 469, -315, 616, -233, 583, -17, 282, -98, 85, -235, 155, -379, 355, -304 ) ]
+[sub_resource type="GDScript" id=6]
+script/source = "extends Navigation2D
+
+onready var cp = $CollisionPolygon2D
+
+func _ready():
+	add_inner_polygon(cp.polygon, cp.global_transform)
+
+
+# NOTES
+# Player structures need to have gaps filled between them, maybe by merging a rectangle in between them.
+# Gaps between inner shapes and the perimeter of the entire navpoly needs to be filled.
+
+
+func add_inner_polygon(polygon_: PoolVector2Array, transform_: Transform2D):
+	var polygon = NavigationPolygon.new()
+	var navpoly = $NavigationPolygonInstance.navpoly
+	for i in navpoly.get_outline_count():
+		polygon.add_outline(navpoly.get_outline(i))
+	polygon.add_outline(polygon_)
+	polygon.make_polygons_from_outlines()
+	$NavigationPolygonInstance.navpoly = polygon
+"
+
+[sub_resource type="NavigationPolygon" id=7]
+vertices = PoolVector2Array( 933, 337, 1313, 529, 826, 473, 1422, 312, 2259, -546, 2718, 1342, 789, 127, 1005, 124, 1162, 47, 1274, 90, 920, -78, 604, 89, 522, 38, 448, -24, 518, 191, 579, 384, 423, 230, 53, 490, 1083, -115, 686, 554, 87, 50, 345, 18 )
+polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 3, 4, 5, 1 ), PoolIntArray( 0, 2, 6, 7 ), PoolIntArray( 8, 9, 0, 7 ), PoolIntArray( 10, 7, 6, 11, 12, 13 ), PoolIntArray( 14, 12, 11, 15 ), PoolIntArray( 4, 3, 9 ), PoolIntArray( 16, 14, 15, 17 ), PoolIntArray( 4, 9, 8, 18 ), PoolIntArray( 19, 2, 1, 5 ), PoolIntArray( 19, 5, 17 ), PoolIntArray( 15, 19, 17 ), PoolIntArray( 16, 17, 20, 21 ), PoolIntArray( 13, 21, 20 ), PoolIntArray( 13, 20, 4 ), PoolIntArray( 13, 4, 18, 10 ) ]
+outlines = [ PoolVector2Array( 2259, -546, 87, 50, 53, 490, 2718, 1342 ), PoolVector2Array( 1274, 90, 1422, 312, 1313, 529, 933, 337 ), PoolVector2Array( 1083, -115, 1162, 47, 1005, 124, 920, -78 ), PoolVector2Array( 826, 473, 789, 127, 604, 89, 579, 384, 686, 554 ), PoolVector2Array( 448, -24, 522, 38, 518, 191, 423, 230, 345, 18 ) ]
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 100.0
@@ -43,9 +67,14 @@ zoom = Vector2( 2, 2 )
 polygon = PoolVector2Array( -3, -8, 1, -491, 1641, -495, 1406, -285, 807, -84, 643, 35, 421, 71, 313, -33, 154, -54, 65, 18, 35, 170, 84, 391, 294, 549, 590, 594, 919, 361, 1158, 346, 1230, 441, 1305, 628, 1716, 816, 1762, 971, -1, 982 )
 
 [node name="Navigation2D" type="Navigation2D" parent="MapContent"]
+script = SubResource( 6 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="MapContent/Navigation2D"]
-navpoly = SubResource( 3 )
+navpoly = SubResource( 7 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapContent/Navigation2D"]
+polygon = PoolVector2Array( 1602, -140, 1687, 136, 1442, 23 )
+disabled = true
 
 [node name="PlayerStructures" type="Node" parent="."]
 
@@ -74,18 +103,9 @@ script = SubResource( 2 )
 position = Vector2( 908, 46 )
 
 [node name="BaseEnemy2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 973, 190 )
+position = Vector2( 1687, -135 )
 
 [node name="BaseEnemy3" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 1071, 49 )
-
-[node name="BaseEnemy4" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 1090, -106 )
-
-[node name="BaseEnemy5" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 839, 162 )
-
-[node name="BaseEnemy6" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 730, 111 )
+position = Vector2( 1704, 49 )
 
 [node name="UI" type="Node" parent="."]

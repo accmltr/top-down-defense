@@ -4,12 +4,17 @@ class_name Map
 
 onready var _player_structures_holder: Node = $PlayerStructures
 onready var _enemies_holder: Node = $Enemies
+onready var _base: Base = $PlayerStructures/Base
+onready var _nav: Navigation2D = $MapContent/Navigation2D
 
 var player_structs: Array = []
 var enemies: Array = []
 
 func _ready():
 	MapRefs.map = self
+
+func path_to_base(e: Enemy) -> PoolVector2Array:
+	return _nav.get_simple_path(e.global_position, _base.global_position)
 
 func add_enemy(e: Enemy):
 	if e.get_parent():
