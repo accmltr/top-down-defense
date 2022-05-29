@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemy Related/Enemies/MeleeEnemy.gd"
 }, {
+"base": "Node2D",
+"class": "Pathfinder",
+"language": "GDScript",
+"path": "res://Scripts/Pathfinder.gd"
+}, {
 "base": "AttackExecution",
 "class": "PerimeterSplashAttackExecution",
 "language": "GDScript",
@@ -108,6 +113,7 @@ _global_script_class_icons={
 "MachineGunTurret": "",
 "Map": "",
 "MeleeEnemy": "",
+"Pathfinder": "",
 "PerimeterSplashAttackExecution": "",
 "PlayerStructure": "",
 "Projectile": "",
@@ -123,7 +129,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Top-down Defense (Godot Project)"
-run/main_scene="res://Scenes/Maps/Test Map.tscn"
+run/main_scene="res://Scenes/pathfindingTestScene.tscn"
 
 [autoload]
 

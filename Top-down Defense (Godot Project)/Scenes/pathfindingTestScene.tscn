@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Pathfinder.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 50.8035
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 107.056
+
+[node name="test scene" type="Node2D"]
+
+[node name="NavigationPolygonVisualizer" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( 680, 150, 525, 224, 386, 435, 497, 549, 822, 422, 767, 214 )
+
+[node name="Circle Colliders" type="Node" parent="."]
+
+[node name="turret1" type="CollisionShape2D" parent="Circle Colliders"]
+position = Vector2( 432, 323 )
+shape = SubResource( 1 )
+
+[node name="turret2" type="CollisionShape2D" parent="Circle Colliders"]
+position = Vector2( 289, 200 )
+shape = SubResource( 1 )
+
+[node name="turret3" type="CollisionShape2D" parent="Circle Colliders"]
+position = Vector2( 365, 122 )
+shape = SubResource( 1 )
+
+[node name="Wall" type="CollisionShape2D" parent="Circle Colliders"]
+position = Vector2( 445, 394 )
+shape = SubResource( 2 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
