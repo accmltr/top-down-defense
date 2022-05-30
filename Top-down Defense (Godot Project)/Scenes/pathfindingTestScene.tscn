@@ -16,7 +16,7 @@ polygon = PoolVector2Array( 680, 150, 525, 224, 386, 435, 497, 549, 822, 422, 76
 [node name="Circle Colliders" type="Node" parent="."]
 
 [node name="turret1" type="CollisionShape2D" parent="Circle Colliders"]
-position = Vector2( 432, 323 )
+position = Vector2( 271, 382 )
 shape = SubResource( 1 )
 
 [node name="turret2" type="CollisionShape2D" parent="Circle Colliders"]
@@ -24,7 +24,7 @@ position = Vector2( 289, 200 )
 shape = SubResource( 1 )
 
 [node name="turret3" type="CollisionShape2D" parent="Circle Colliders"]
-position = Vector2( 365, 122 )
+position = Vector2( 355, 130 )
 shape = SubResource( 1 )
 
 [node name="Wall" type="CollisionShape2D" parent="Circle Colliders"]
