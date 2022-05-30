@@ -21,15 +21,15 @@ func _ready():
 
 
 
-func makeIslandPolies(circles: PoolVector3Array, merge_distance: float = 0) -> Array:
-	# Takes the circle shapes from turrets/walls and organizes them into groups that should get merged together with filled spaces.
-	var islands = [] # Array of PoolVector3Arrays with elemnts of type (x_pos, y_pos, radius)
+func makeIslandPolies(circles: PoolVector3Array, inflate_distance: float = 20) -> Array:
+	# Inflates all circles and merges overlapping ones.
+	var islands = [] # Array of PV3Arrays with elemnts of type (x_pos, y_pos, radius)
 
 	for c in circles:
 		var belong_to = [] # record which islands element belongs to by saving island index
 		for i in islands.size():
 			for c2 in islands[i]:
-				if Vector2(c.x, c.y).distance_to(Vector2(c2.x, c2.y)) - c.z - c2.z < merge_distance:
+				if Vector2(c.x, c.y).distance_to(Vector2(c2.x, c2.y)) - c.z - c2.z -2.0*inflate_distance < 0:
 					belong_to.append(i)
 					break
 		
@@ -54,7 +54,7 @@ func makeIslandPolies(circles: PoolVector3Array, merge_distance: float = 0) -> A
 	var islandPolies = []
 	for i in islands.size():
 		var ci = islands[i][0]
-		islandPolies.append(makeCirclePolygon(ci.z, Vector2(ci.x, ci.y)))
+		islandPolies.append(makeCirclePolygon(ci.z + inflate_distance, Vector2(ci.x, ci.y)))
 		var doneAppended = []
 		var lastAppended = [ci]
 		while !lastAppended.empty():
@@ -62,8 +62,8 @@ func makeIslandPolies(circles: PoolVector3Array, merge_distance: float = 0) -> A
 			for c in lastAppended:
 				for c2 in islands[i]:
 					if c2 != c && !doneAppended.has(c2):
-						if Vector2(c.x, c.y).distance_to(Vector2(c2.x, c2.y)) - c.z - c2.z < merge_distance:
-							islandPolies[i] = mergeCircleToPoly(islandPolies[i], c2)
+						if Vector2(c.x, c.y).distance_to(Vector2(c2.x, c2.y)) - c.z - c2.z -2.0*inflate_distance < 0:
+							islandPolies[i] = mergeCircleToPoly(islandPolies[i], c2 + Vector3(0,0,inflate_distance))
 							la.append(c2)
 							doneAppended.append(c2)
 			lastAppended = la
