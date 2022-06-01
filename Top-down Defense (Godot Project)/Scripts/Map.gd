@@ -3,72 +3,42 @@ extends Node
 class_name Map
 
 onready var _map_pathfinder = $MapPathfinder
-onready var _player_structures_holder: Node = $PlayerStructures
-onready var _enemies_holder: Node = $Enemies
+onready var player_structs_manager = $PlayerStructures
+onready var enemies_manager = $Enemies
 onready var _base: Base = $PlayerStructures/Base
-
-var player_structs: Array = []
-var enemies: Array = []
 
 func _ready():
 	MapRefs.map = self
+	player_structs_manager.setup()
+	enemies_manager.setup()
 	_map_pathfinder.base_poly = $MapContent/NavPolyDrawn.polygon
-	_map_pathfinder.generate_navpoly(_player_struct_circles())
-
-func _player_struct_circles() -> PoolVector3Array:
-	var res = PoolVector3Array()
-	for c in _player_structures_holder.get_children():
-		res.append()
-	return res
+	_map_pathfinder.generate_navpoly(player_structs_manager.circles())
 
 func path_to_base(e: Enemy) -> PoolVector2Array:
 	return _map_pathfinder.get_simple_path(e.global_position, _base.global_position)
 
-func add_enemy(e: Enemy):
-	if e.get_parent():
-		e.get_parent().remove_child(e)
-	_enemies_holder.add_child(e)
-	enemies.append(e)
-
-func delete_enemy(e: Enemy):
-	enemies.erase(e)
-	e.queue_free()
-
-func add_player_struct(s: PlayerStructure):
-	player_structs.append(s)
-	if s.get_parent():
-		s.get_parent().remove_child(s)
-	_player_structures_holder.add_child(s)
-
-func delete_player_struct(s: PlayerStructure):
-	player_structs.erase(s)
-	s.queue_free()
-
-func has_enemy(e: Enemy) -> bool:
-	return enemies.has(e)
-
 func closest_player_structure_within_range(enemy: Node2D, radius: float) -> Node2D:
-	return _closest_node_within_range(_player_structures_holder, enemy, radius)
+	return _closest_node_within_range(player_structs_manager.player_structs, enemy, radius)
 
 func closest_enemy_within_range(player_structure: Node2D, radius: float) -> Node2D:
-	return _closest_node_within_range(_enemies_holder, player_structure, radius)
+	return _closest_node_within_range(enemies_manager.enemies, player_structure, radius)
 
 func player_structures_within_range(enemy: Node2D, radius: float) -> Array:
 	var res: Array = []
-	for e in _nodes_within_range(_player_structures_holder, enemy, radius):
+	for e in _nodes_within_range(player_structs_manager.player_structs, enemy, radius):
 		res.append(e as PlayerStructure)
 	return res
 
 func enemies_within_range(player_structure: Node2D, radius: float) -> Array:
 	var res: Array = []
-	for e in _nodes_within_range(_enemies_holder, player_structure, radius):
+	for e in _nodes_within_range(enemies_manager.enemies, player_structure, radius):
 		res.append(e as Enemy)
 	return res
 
-func _closest_node_within_range(holder_node: Node, agent: Node2D, radius: float) -> Node2D:
+func _closest_node_within_range(nodes: Array, agent: Node2D, radius: float) -> Node2D:
 	var res: Node2D
 	var cd: float
-	for s in _nodes_within_range(holder_node, agent, radius):
+	for s in _nodes_within_range(nodes, agent, radius):
 		var d = s.global_position.distance_squared_to(agent.global_position)
 		if res == null:
 			res = s
@@ -78,10 +48,10 @@ func _closest_node_within_range(holder_node: Node, agent: Node2D, radius: float)
 			cd = d
 	return res
 
-func _nodes_within_range(holder_node: Node, agent: Node2D, radius: float) -> Array:
+func _nodes_within_range(nodes: Array, agent: Node2D, radius: float) -> Array:
 	var r2 = pow(radius, 2)
 	var res: Array = []
-	for n in holder_node.get_children():
+	for n in nodes:
 		if n != agent:
 			if agent.global_position.distance_squared_to(n.global_position) < r2:
 				res.append(n)

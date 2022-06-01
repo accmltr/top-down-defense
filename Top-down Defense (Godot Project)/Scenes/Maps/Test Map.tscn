@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player Structures/Turrets/Machinge Gun Turret/MachineGunTurret.tscn" type="PackedScene" id=2]
@@ -7,21 +7,11 @@
 [ext_resource path="res://Scenes/Player Structures/Turrets/Snipe Turret/SnipeTurret.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Player Structures/Turrets/Splash Turret/SplashTurret.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/MapPathfinder.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Map Management Related/PlayerStructsMan.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Map Management Related/EnemiesMan.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 100.0
-
-[sub_resource type="GDScript" id=2]
-script/source = "extends Node
-
-var stop = false
-
-func _process(_delta):
-	if MapRefs.map && !stop:
-		for e in get_children():
-			MapRefs.map.add_enemy(e)
-		stop = true
-"
 
 [node name="Test Map" type="Node2D"]
 script = ExtResource( 1 )
@@ -47,6 +37,7 @@ polygon = PoolVector2Array( 2421, -975, 1811, -784, 1642, -495, 1408, -284, 805,
 polygon = PoolVector2Array( -3, -8, 1, -491, 1641, -495, 1406, -285, 807, -84, 643, 35, 421, 71, 313, -33, 154, -54, 65, 18, 35, 170, 84, 391, 294, 549, 590, 594, 919, 361, 1158, 346, 1230, 441, 1305, 628, 1716, 816, 1762, 971, -1, 982 )
 
 [node name="PlayerStructures" type="Node" parent="."]
+script = ExtResource( 8 )
 
 [node name="Base" parent="PlayerStructures" instance=ExtResource( 3 )]
 position = Vector2( 248, 215 )
@@ -67,10 +58,13 @@ shape = SubResource( 4 )
 disabled = true
 
 [node name="Enemies" type="Node" parent="."]
-script = SubResource( 2 )
+script = ExtResource( 9 )
 
 [node name="BaseEnemy" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 908, 46 )
+
+[node name="BaseEnemy4" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 663, 244 )
 
 [node name="BaseEnemy2" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 1687, -135 )

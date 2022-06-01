@@ -14,6 +14,8 @@ func _ready():
 	# Testing code:
 	yield(get_tree().create_timer(1), "timeout")
 	l = Line2D.new()
+	l.width *= .5
+	l.modulate.a = .5
 	MapRefs.map.add_child(l)
 	l.points = MapRefs.map.path_to_base(self)
 	# :Testing code
@@ -21,7 +23,7 @@ func _ready():
 func die(killer):
 	print("%s: I got killed by %s" % [name, killer.name])
 	l.free()
-	MapRefs.map.delete_enemy(self)
+	MapRefs.map.enemies_manager.delete_enemy(self)
 
 func get_health() -> Health:
 	return health

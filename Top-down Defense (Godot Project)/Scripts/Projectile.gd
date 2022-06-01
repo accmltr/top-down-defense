@@ -20,3 +20,6 @@ func destroy():
 
 func get_manager():
 	return _manager
+
+func is_enemy_alive(enemy):
+	return MapRefs.map.enemies_manager.enemies.has(enemy)

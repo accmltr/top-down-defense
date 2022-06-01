@@ -9,7 +9,7 @@ export var _speed: float = 70
 signal hit(target)
 
 func _physics_process(delta):
-	if MapRefs.map.has_enemy(_target):
+	if is_enemy_alive(_target):
 		global_position = global_position.move_toward(_target.global_position, _speed*delta)
 	elif _launched:
 		destroy()
