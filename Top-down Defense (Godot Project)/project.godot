@@ -44,15 +44,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Map.gd"
 }, {
+"base": "Navigation2D",
+"class": "MapPathfinder",
+"language": "GDScript",
+"path": "res://Scripts/MapPathfinder.gd"
+}, {
 "base": "Enemy",
 "class": "MeleeEnemy",
 "language": "GDScript",
 "path": "res://Scripts/Enemy Related/Enemies/MeleeEnemy.gd"
-}, {
-"base": "Navigation2D",
-"class": "Pathfinder",
-"language": "GDScript",
-"path": "res://Scripts/Pathfinder.gd"
 }, {
 "base": "AttackExecution",
 "class": "PerimeterSplashAttackExecution",
@@ -112,8 +112,8 @@ _global_script_class_icons={
 "Health": "",
 "MachineGunTurret": "",
 "Map": "",
+"MapPathfinder": "",
 "MeleeEnemy": "",
-"Pathfinder": "",
 "PerimeterSplashAttackExecution": "",
 "PlayerStructure": "",
 "Projectile": "",
@@ -133,6 +133,7 @@ run/main_scene="res://Scenes/pathfindingTestScene.tscn"
 
 [autoload]
 
+Acc_Geometry="*res://Scripts/Libraries/Acc_Geometry.gd"
 MapRefs="*res://Scripts/MapRefs.gd"
 
 [display]
