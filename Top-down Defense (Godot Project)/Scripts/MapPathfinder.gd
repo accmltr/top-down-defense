@@ -3,18 +3,15 @@ extends Navigation2D
 class_name MapPathfinder
 
 onready var navpoly_instance = $NavigationPolygonInstance
-var base_poly: PoolVector2Array
+
+export var base_poly: PoolVector2Array
 export var inflate_distance: float = 10
 
 export var test_mode: bool = false
 
+# Testing:
 func _ready():
-	base_poly = $BaseNavPolygon.polygon
-	$BaseNavPolygon.queue_free()
-	
-	# Testing:
 	if test_mode:
-		generate_navpoly(get_node("../Circle Colliders").get_children())
 		$Line2D.visible = true
 		$Node2D.visible = true
 		$Node2D2.visible = true
@@ -26,18 +23,10 @@ func _input(event):
 			$Node2D2.global_position = get_global_mouse_position()
 			$Line2D.points = get_simple_path($Node2D.global_position, $Node2D2.global_position)
 
-func generate_navpoly(circleCols: Array):
-	var circles = _make_circles(circleCols)
+func generate_navpoly(circles: PoolVector3Array):
 	var islands = _generate_islands(circles, inflate_distance)
-	var polies = _incorporate_polies(base_poly, islands)
+	var polies = _incorporate_polies(Geometry.offset_polygon_2d(base_poly, -inflate_distance)[0], islands)
 	_set_nav_polies(polies)
-
-func _make_circles(colliders: Array) -> PoolVector3Array:
-	# Only takes CircleShape2Ds.
-	var circles = PoolVector3Array()
-	for c in colliders:
-		circles.append(Vector3(c.global_position.x, c.global_position.y, (c.shape as CircleShape2D).radius))
-	return circles
 
 func _incorporate_polies(_base_poly: PoolVector2Array, polies: Array) -> Array:
 	var base = _base_poly

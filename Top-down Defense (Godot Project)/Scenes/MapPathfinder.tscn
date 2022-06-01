@@ -5,10 +5,6 @@
 [node name="MapPathfinder" type="Navigation2D"]
 script = ExtResource( 1 )
 
-[node name="BaseNavPolygon" type="Polygon2D" parent="."]
-color = Color( 0.466667, 1, 0.87451, 0.364706 )
-polygon = PoolVector2Array( 285, 81, 453, 94, 766, 434, 276, 523, 20, 276, 36, 161, 64, 27 )
-
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
 
 [node name="Node2D" type="Node2D" parent="."]

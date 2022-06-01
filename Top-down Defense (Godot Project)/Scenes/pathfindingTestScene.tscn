@@ -6,7 +6,18 @@
 script/source = "extends Node2D
 
 func _ready():
-	$MapPathfinder.generate_navpoly($\"Circle Colliders\".get_children())
+	$MapPathfinder.base_poly = $NavPoly.polygon
+	$NavPoly.queue_free()
+	var circles = _make_circles($\"Circle Colliders\".get_children())
+	$MapPathfinder.generate_navpoly(circles)
+
+
+func _make_circles(colliders: Array) -> PoolVector3Array:
+	# Only takes CircleShape2Ds.
+	var circles = PoolVector3Array()
+	for c in colliders:
+		circles.append(Vector3(c.global_position.x, c.global_position.y, (c.shape as CircleShape2D).radius))
+	return circles
 "
 
 [sub_resource type="CircleShape2D" id=1]
@@ -39,6 +50,9 @@ shape = SubResource( 1 )
 [node name="Wall" type="CollisionShape2D" parent="Circle Colliders"]
 position = Vector2( 444, 377 )
 shape = SubResource( 2 )
+
+[node name="NavPoly" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( 220, 63, 129, 42, 42, 125, 118, 267, 210, 445, 440, 553, 683, 493, 794, 224, 643, 139 )
 
 [node name="MapPathfinder" parent="." instance=ExtResource( 1 )]
 inflate_distance = 12.0

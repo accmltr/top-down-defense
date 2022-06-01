@@ -129,7 +129,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Top-down Defense (Godot Project)"
-run/main_scene="res://Scenes/pathfindingTestScene.tscn"
+run/main_scene="res://Scenes/Maps/Test Map.tscn"
 
 [autoload]
 
