@@ -39,7 +39,7 @@ func _closest_node_within_range(nodes: Array, agent: Node2D, radius: float) -> N
 	var res: Node2D
 	var cd: float
 	for s in _nodes_within_range(nodes, agent, radius):
-		var d = s.global_position.distance_squared_to(agent.global_position)
+		var d = s.global_position.distance_to(agent.global_position) - s.radius - agent.radius
 		if res == null:
 			res = s
 			cd = d
@@ -49,10 +49,10 @@ func _closest_node_within_range(nodes: Array, agent: Node2D, radius: float) -> N
 	return res
 
 func _nodes_within_range(nodes: Array, agent: Node2D, radius: float) -> Array:
-	var r2 = pow(radius, 2)
 	var res: Array = []
 	for n in nodes:
 		if n != agent:
-			if agent.global_position.distance_squared_to(n.global_position) < r2:
+			var dist = agent.global_position.distance_to(n.global_position)
+			if dist - n.radius - agent.radius < radius:
 				res.append(n)
 	return res

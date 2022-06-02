@@ -61,9 +61,9 @@ func _can_attack() -> bool:
 
 func _get_target() -> Node2D:
 	if _is_enemy:
-		return MapRefs.map.closest_player_structure_within_range(self, _attack_range)
+		return MapRefs.map.closest_player_structure_within_range(get_parent(), _attack_range)
 	else:
-		return MapRefs.map.closest_enemy_within_range(self, _attack_range)
+		return MapRefs.map.closest_enemy_within_range(get_parent(), _attack_range)
 
 #func _notification(what):
 #	if what == NOTIFICATION_PREDELETE:
