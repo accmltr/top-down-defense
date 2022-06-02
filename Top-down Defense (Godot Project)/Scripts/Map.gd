@@ -2,20 +2,20 @@ extends Node
 
 class_name Map
 
-onready var _map_pathfinder = $MapPathfinder
+onready var game_manager = $GameManager
+onready var map_pathfinder = $MapPathfinder
 onready var player_structs_manager = $PlayerStructures
 onready var enemies_manager = $Enemies
-onready var _base: Base = $PlayerStructures/Base
+onready var base = $PlayerStructures/Base
+onready var wave_maker = $WaveMaker
 
 func _ready():
 	MapRefs.map = self
 	player_structs_manager.setup()
 	enemies_manager.setup()
-	_map_pathfinder.base_poly = $MapContent/NavPolyDrawn.polygon
-	_map_pathfinder.generate_navpoly(player_structs_manager.circles())
-
-func path_to_base(e: Enemy) -> PoolVector2Array:
-	return _map_pathfinder.get_simple_path(e.global_position, _base.global_position)
+	map_pathfinder.base_poly = $MapContent/NavPolyDrawn.polygon
+	map_pathfinder.generate_navpoly(player_structs_manager.circles())
+	game_manager.setup()
 
 func closest_player_structure_within_range(enemy: Node2D, radius: float) -> Node2D:
 	return _closest_node_within_range(player_structs_manager.player_structs, enemy, radius)

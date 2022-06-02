@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player Structures/Turrets/Machinge Gun Turret/MachineGunTurret.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Scenes/MapPathfinder.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/Map Management Related/PlayerStructsMan.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Map Management Related/EnemiesMan.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Game Cycle/WaveMaker.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/GameManager.gd" type="Script" id=11]
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 100.0
@@ -16,13 +18,28 @@ radius = 100.0
 [node name="Test Map" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 1082, 198 )
 current = true
 zoom = Vector2( 2, 2 )
 
 [node name="MapPathfinder" parent="." instance=ExtResource( 7 )]
-test_mode = true
+inflate_distance = 12.5
+
+[node name="WaveMaker" type="Node2D" parent="."]
+script = ExtResource( 10 )
+enemy_1 = ExtResource( 4 )
+
+[node name="SpawnPoints" type="Node2D" parent="WaveMaker"]
+
+[node name="p1" type="Node2D" parent="WaveMaker/SpawnPoints"]
+position = Vector2( 974, -47 )
+
+[node name="p2" type="Node2D" parent="WaveMaker/SpawnPoints"]
+position = Vector2( 1088, 279 )
 
 [node name="MapContent" type="Node" parent="."]
 
@@ -34,7 +51,11 @@ polygon = PoolVector2Array( 2421, -975, 1811, -784, 1642, -495, 1408, -284, 805,
 [node name="Terrain" type="StaticBody2D" parent="MapContent"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapContent/Terrain"]
+visible = false
 polygon = PoolVector2Array( -3, -8, 1, -491, 1641, -495, 1406, -285, 807, -84, 643, 35, 421, 71, 313, -33, 154, -54, 65, 18, 35, 170, 84, 391, 294, 549, 590, 594, 919, 361, 1158, 346, 1230, 441, 1305, 628, 1716, 816, 1762, 971, -1, 982 )
+
+[node name="Sprite" type="Polygon2D" parent="MapContent/Terrain"]
+polygon = PoolVector2Array( 1643, -498, 1407, -282, 802, -80, 636, 37, 417, 74, 308, -38, 151, -53, 65, 19, 35, 173, 83, 393, 294, 551, 586, 595, 920, 360, 1157, 346, 1230, 437, 1304, 630, 1721, 817, 1762, 972, 2272, 2110, -1512, 2084, -2005, 134, -1502, -1490, 2104, -1500 )
 
 [node name="PlayerStructures" type="Node" parent="."]
 script = ExtResource( 8 )
@@ -59,17 +80,5 @@ disabled = true
 
 [node name="Enemies" type="Node" parent="."]
 script = ExtResource( 9 )
-
-[node name="BaseEnemy" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 908, 46 )
-
-[node name="BaseEnemy4" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 663, 244 )
-
-[node name="BaseEnemy2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 1687, -135 )
-
-[node name="BaseEnemy3" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 1704, 49 )
 
 [node name="UI" type="Node" parent="."]

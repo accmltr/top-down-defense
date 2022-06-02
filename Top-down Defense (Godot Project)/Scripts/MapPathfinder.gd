@@ -23,6 +23,9 @@ func _input(event):
 			$Node2D2.global_position = get_global_mouse_position()
 			$Line2D.points = get_simple_path($Node2D.global_position, $Node2D2.global_position)
 
+func path_to_base(from: Vector2) -> PoolVector2Array:
+	return get_simple_path(from, MapRefs.base().global_position)
+
 func generate_navpoly(circles: PoolVector3Array):
 	var islands = _generate_islands(circles, inflate_distance)
 	var polies = _incorporate_polies(Geometry.offset_polygon_2d(base_poly, -inflate_distance)[0], islands)

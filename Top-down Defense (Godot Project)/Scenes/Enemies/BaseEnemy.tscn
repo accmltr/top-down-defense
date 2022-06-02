@@ -11,12 +11,13 @@ radius = 12.0
 collision_layer = 8
 collision_mask = 15
 script = ExtResource( 1 )
+movespeed = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
 
 [node name="AttackerPart" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
